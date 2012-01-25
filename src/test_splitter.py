@@ -9,7 +9,12 @@ class SplitterTest(TestCase):
         self.assertEqual(self.s.split([1,3],1), [[1,3]])
         pass
     
-    def test_spliting_an_homogeneous_array_leads_to_an_homogeneous_answer(self):
+    def test_spliting_an_homogeneous_loot_leads_to_an_homogeneous_answer(self):
         self.assertEqual(self.s.split([2,2],2), [[2],[2]])
         self.assertEqual(self.s.split([2,2,2,2,2,2],3), [[2,2],[2,2],[2,2]])
+        pass
+    
+    def test_spliting_a_loot_with_a_even_number_of_elements_an_single_kind_of_answer(self):
+        self.assertEqual(self.s.split([1,2,1,2],2), [[1,2],[1,2]])
+        self.assertEqual(self.s.split([1,1,2,2],2), [[1,2],[1,2]])
         pass
