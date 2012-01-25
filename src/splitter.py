@@ -6,27 +6,40 @@ class Splitter(object):
         
         bucket_size = self.compute_bucket_size(loot, pirate_number)
         
-        i =0
         pirate_index = 0
         loot_size = loot.__len__()
-        while i < loot_size:
+        while loot.__len__()>0:
             pirate_bucket = ret[pirate_index]
-            sum = 0 
-            while sum < bucket_size:
-                gem = loot.pop(0)
-                if sum+gem > bucket_size:
-                    loot.append(gem)
-                else:
-                    pirate_bucket.append(gem)
-                    sum += gem
-                    i += 1
-            pirate_bucket.sort()
+            self.split_pirate(loot, ret[pirate_index], bucket_size)
             pirate_index += 1
                 
         print bucket_size
         print loot
         print ret
         return ret
+    
+    def split_pirate(self, loot, pirate_bucket, bucket_size):
+        
+        sum = 0
+        for g in pirate_bucket:
+            sum += g
+         
+        tries = 0
+        loot_size = loot.__len__()
+        while sum < bucket_size and tries < loot_size:
+            gem = loot.pop(0)
+            if sum+gem > bucket_size:
+                loot.append(gem)
+            else:
+                pirate_bucket.append(gem)
+                sum += gem
+            tries += 1
+            
+        if sum<bucket_size:
+            loot.append(pirate_bucket.pop())
+            self.split_pirate(loot, pirate_bucket, bucket_size)
+            
+        pirate_bucket.sort()
     
     def init_answer(self,pirate_number):
         ret = []

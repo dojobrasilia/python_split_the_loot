@@ -22,4 +22,7 @@ class SplitterTest(TestCase):
     
     def test_a_loot_with_an_eager_example_returning_one_choice(self):
         self.assertEqual(self.s.split([2,2,1,1],2), [[1,2],[1,2]])
+
+    def test_a_loot_with_an_eager_example_returning_two_choices_for_the_same_pirate(self):
+        self.assertEqual(self.s.split([1,1,2,2],2), [[1,2],[1,2]])
         
