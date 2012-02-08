@@ -1,6 +1,7 @@
 class Splitter(object):
     def split(self,loot,pirate_number):
-        #loot.sort()
+        loot.sort()
+        loot.reverse()
         
         ret = self.init_answer(pirate_number)
         

@@ -1,17 +1,40 @@
+08/02/2012
+
 Participantes
 	- Fabs
-	- Pedroso
+	- Renan
+	- Nandico
+
+	=]
+		- Discutimos bastante sobre o problema (Só fizemos isso)
+		- Encontramos o caso que quebra a solução (e as anteriores)
+		- Aprendemos mais sobre o Dojo
+		- Nandico veio
+	=[
+		- Não codificamos nada
+		-
+		
+	OBS
+		- Próximo dojo tentaremos fazer o problema orientando a recursão.
+			- Pensando nos critérios de parada e redução do espaço amostral.
+		- Existe uma solução que resolve para um e não resolve para os outros.
+
+25/01/2012
+
+	Participantes
+		- Fabs
+		- Pedroso
+		
+	=]
+		- Voltar em um problema Antigo
 	
-=]
-	- Voltar em um problema Antigo
-
-=[
-	- Estamos tentando resolver o problema na força bruta/ solução ingênua
-	- Não tá claro o próximo passo/ a direção do código
-	- Dojo de quarta tá com o estigma de "dojo de veterano"
-
-OBS:
-	- Não é Fácil achar os casos/exemplos
-		- Talvez usando primos para bolar os exemplos pode nos ajudar a encontrá-los mais fácil
-	- Tentar exercitar a memória das decisões para poder exercitar essa parte no código
-		- Como pensar no problema como uma árvore de decisão?
+	=[
+		- Estamos tentando resolver o problema na força bruta/ solução ingênua
+		- Não tá claro o próximo passo/ a direção do código
+		- Dojo de quarta tá com o estigma de "dojo de veterano"
+	
+	OBS:
+		- Não é Fácil achar os casos/exemplos
+			- Talvez usando primos para bolar os exemplos pode nos ajudar a encontrá-los mais fácil
+		- Tentar exercitar a memória das decisões para poder exercitar essa parte no código
+			- Como pensar no problema como uma árvore de decisão?

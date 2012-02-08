@@ -18,11 +18,15 @@ class SplitterTest(TestCase):
         self.assertEqual(self.s.split([1,3,1,2,3,3,2,1,2],3), [[1,2,3],[1,2,3],[1,2,3]])
     
     def test_a_loot_with_an_simple_eager_example(self):
-        self.assertEqual(self.s.split([1,3,4],2), [[1,3],[4]])
+        self.assertEqual(self.s.split([1,3,4],2), [[4],[1,3]])
     
     def test_a_loot_with_an_eager_example_returning_one_choice(self):
         self.assertEqual(self.s.split([2,2,1,1],2), [[1,2],[1,2]])
 
     def test_a_loot_with_an_eager_example_returning_two_choices_for_the_same_pirate(self):
         self.assertEqual(self.s.split([1,1,2,2],2), [[1,2],[1,2]])
+        
+    def test_a_loot_with_an_eager_example_returning_three_choices_for_the_same_pirate(self):
+        self.assertEqual(self.s.split([5,2,2,2,2,2,5],2), [[5,5],[2,2,2,2,2]])
+        self.assertEqual(self.s.split([3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2],3), [[3, 2, 2, 2],[3, 2, 2, 2],[3, 2, 2, 2]])
         
