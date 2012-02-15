@@ -4,29 +4,15 @@ class SplitterTest(TestCase):
     def setUp(self):
         self.s = Splitter()
 
-    def test_for_a_single_pirate_is_trivial(self):
-        self.assertEqual(self.s.split([2,2,3],1), [[2,2,3]])
-        self.assertEqual(self.s.split([1,3],1), [[1,3]])
-    
-    def test_an_homogeneous_loot_leads_to_an_homogeneous_answer(self):
-        self.assertEqual(self.s.split([2,2],2), [[2],[2]])
-        self.assertEqual(self.s.split([2,2,2,2,2,2],3), [[2,2],[2,2],[2,2]])
-    
-    def _test_a_loot_with_a_even_number_of_elements_an_single_kind_of_answer(self):
-        self.assertEqual(self.s.split([1,2,1,2],2), [[1,2],[1,2]])
-        self.assertEqual(self.s.split([1,1,2,2],2), [[1,2],[1,2]])
-        self.assertEqual(self.s.split([1,3,1,2,3,3,2,1,2],3), [[1,2,3],[1,2,3],[1,2,3]])
-    
-    def test_a_loot_with_an_simple_eager_example(self):
-        self.assertEqual(self.s.split([1,3,4],2), [[4],[1,3]])
-    
-    def test_a_loot_with_an_eager_example_returning_one_choice(self):
-        self.assertEqual(self.s.split([2,2,1,1],2), [[1,2],[1,2]])
-
-    def test_a_loot_with_an_eager_example_returning_two_choices_for_the_same_pirate(self):
-        self.assertEqual(self.s.split([1,1,2,2],2), [[1,2],[1,2]])
+    def test_returns_none_when_loot_is_undivisible_by_number_of_pirates(self):
+        self.assertEqual(None,self.s.split([2,3],2))
         
-    def test_a_loot_with_an_eager_example_returning_three_choices_for_the_same_pirate(self):
-        self.assertEqual(self.s.split([5,2,2,2,2,2,5],2), [[5,5],[2,2,2,2,2]])
-        self.assertEqual(self.s.split([3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2],3), [[3, 2, 2, 2],[3, 2, 2, 2],[3, 2, 2, 2]])
+    def test_returns_none_when_there_are_not_enough_gems(self):
+        self.assertEqual(None,self.s.split([4,2],3))
         
+    def test_should_split_for_trivial_case(self):
+        self.assertEqual([[2],[2]],self.s.split([2,2],2))
+        self.assertEqual([[2],[2],[2]],self.s.split([2,2,2],3))
+        self.assertEqual([[2,2],[2,2]],self.s.split([2,2,2,2],2))
+        
+    
