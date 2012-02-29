@@ -32,5 +32,6 @@ class SplitterTest(TestCase):
         
     def test_should_rollback_when_the_first_decision_doesnt_fit(self):
         self.assertEqual([[7, 2, 2],[3, 3, 3, 2]],self.s.split([7, 3, 3, 3, 2, 2, 2],2))
+        self.assertEqual([[20, 5],[5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]],self.s.split([20, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],2))
         
         

@@ -6,7 +6,7 @@ class Splitter(object):
         if self.is_unsolvable(): 
             return None
         
-        while len(loot) > 0:
+        while len(self.loot) > 0:
             self.give_one_gem_for_each_bucket()
             
         return self.sort_buckets()
@@ -21,7 +21,8 @@ class Splitter(object):
                 self.loot.append(bucket.pop())
                 
         if(len_before == len(self.loot)):
-                self.rollback_last_share()   
+            print len_before 
+            self.rollback_last_share()   
                     
     def rollback_last_share(self):
         for bucket in self.buckets:
