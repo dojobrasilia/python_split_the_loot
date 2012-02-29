@@ -5,7 +5,7 @@ class Splitter(object):
         self.loot.sort()
         self.numberOfPirates = numberOfPirates
         
-        share = sum(loot)/numberOfPirates
+        self.share = sum(loot)/numberOfPirates
         buckets = self.create_buckets()
         
         if self.is_unsolvable(): 
@@ -14,7 +14,7 @@ class Splitter(object):
         
         while len(loot) > 0:
             for bucket in buckets:
-                if(len(loot) > 0 and sum(bucket) < share ):
+                if(len(loot) > 0 and sum(bucket) < self.share ):
                     bucket.append(loot.pop())
           
         return buckets
@@ -25,8 +25,16 @@ class Splitter(object):
     def are_there_more_pirates_than_gems(self):
         return len(self.loot) < self.numberOfPirates
     
+    def are_there_one_gem_greater_then_share(self):
+        for gem in self.loot:
+            if(gem > self.share):
+                return True
+        return False
+    
     def is_unsolvable(self):
-        return self.is_loot_undivisible_by_number_of_pirates() or self.are_there_more_pirates_than_gems()
+        return self.is_loot_undivisible_by_number_of_pirates() \
+                or self.are_there_more_pirates_than_gems() \
+                or self.are_there_one_gem_greater_then_share()
     
     def create_buckets(self):
         buckets = []
