@@ -6,22 +6,32 @@ class Splitter(object):
         if self.is_unsolvable(): 
             return None
         
-        
         while len(loot) > 0:
-            originalLootLength = len(loot)
-            for bucket in self.buckets:
-                if(len(loot) > 0 and sum(bucket) < self.share):
-                    bucket.append(loot.pop())
-                if (sum(bucket) > self.share):
-                    loot.append(bucket.pop())
-            if(originalLootLength == len(loot)):
-                for bucket in self.buckets:
-                    loot = [bucket.pop()] + loot
+            self.give_one_gem_for_each_bucket()
+            
+        return self.sort_buckets()
+   
+    def give_one_gem_for_each_bucket(self):
+        len_before = len(self.loot)
+        
+        for bucket in self.buckets:
+            if(len(self.loot) > 0 and sum(bucket) < self.share):
+                bucket.append(self.loot.pop())
+            if (sum(bucket) > self.share):
+                self.loot.append(bucket.pop())
+                
+        if(len_before == len(self.loot)):
+                self.rollback_last_share()   
                     
+    def rollback_last_share(self):
+        for bucket in self.buckets:
+            self.loot = [bucket.pop()] + self.loot
+    
+    
+    def sort_buckets(self):
         for bucket in self.buckets:
             bucket.sort()
             bucket.reverse()
-            
         return self.buckets
     
     def init(self,loot,numberOfPirates):
