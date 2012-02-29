@@ -8,11 +8,20 @@ class Splitter(object):
         
         
         while len(loot) > 0:
+            originalLootLength = len(loot)
             for bucket in self.buckets:
                 if(len(loot) > 0 and sum(bucket) < self.share):
                     bucket.append(loot.pop())
                 if (sum(bucket) > self.share):
                     loot.append(bucket.pop())
+            if(originalLootLength == len(loot)):
+                for bucket in self.buckets:
+                    loot = [bucket.pop()] + loot
+                    
+        for bucket in self.buckets:
+            bucket.sort()
+            bucket.reverse()
+            
         return self.buckets
     
     def init(self,loot,numberOfPirates):
