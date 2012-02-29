@@ -26,4 +26,7 @@ class SplitterTest(TestCase):
         self.assertEqual([[3],[2,1]],self.s.split([1,2,3],2))
         self.assertEqual([[3,2,2,2],[3,2,2,2],[3,2,2,2]],self.s.split([3,3,3,2,2,2,2,2,2,2,2,2],3)) #famoso caso da morte
         self.assertEqual([[7],[5,2]],self.s.split([7,5,2],2))
+    
+    def test_should_not_create_a_bucket_greater_than_share(self):
+        self.assertEqual([[13,1],[7,7]],self.s.split([13,7,7,1],2))
         

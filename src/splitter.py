@@ -1,23 +1,26 @@
 class Splitter(object):
     def split(self, loot, numberOfPirates):
         
-        self.loot = loot
-        self.loot.sort()
-        self.numberOfPirates = numberOfPirates
-        
-        self.share = sum(loot)/numberOfPirates
-        buckets = self.create_buckets()
+        self.init(loot, numberOfPirates)
         
         if self.is_unsolvable(): 
             return None
         
         
         while len(loot) > 0:
-            for bucket in buckets:
-                if(len(loot) > 0 and sum(bucket) < self.share ):
+            for bucket in self.buckets:
+                if(len(loot) > 0 and sum(bucket) < self.share):
                     bucket.append(loot.pop())
-          
-        return buckets
+                if (sum(bucket) > self.share):
+                    loot.append(bucket.pop())
+        return self.buckets
+    
+    def init(self,loot,numberOfPirates):
+        self.loot = loot
+        self.loot.sort()
+        self.numberOfPirates = numberOfPirates
+        self.share = sum(loot)/numberOfPirates
+        self.buckets = self.create_buckets()
     
     def is_loot_undivisible_by_number_of_pirates(self):
         return sum(self.loot) % self.numberOfPirates != 0
