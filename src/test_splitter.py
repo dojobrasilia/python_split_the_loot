@@ -15,6 +15,12 @@ class SplitterTest(TestCase):
         self.assertEqual([[2],[2],[2]],self.s.split([2,2,2],3))
         self.assertEqual([[2,2],[2,2]],self.s.split([2,2,2,2],2))
         
-    def test_everybody_gets_the_same_kind_of_bucket_when_we_have_an_even_kind_gem(self):
+    def test_everybody_gets_the_same_kind_of_bucket_when_we_have_the_same_set_of_gem_and_pirates(self):
         self.assertEqual([[3,2],[3,2]],self.s.split([3,2,3,2],2))
-    
+        self.assertEqual([[3,2],[3,2],[3,2]],self.s.split([3,2,3,2,3,2],3))
+        
+    def test_everybody_gets_the_same_value_with_a_different_number_of_gems(self):
+        self.assertEqual([[3],[2,1]],self.s.split([1,2,3],2))
+        self.assertEqual([[3,2,2,2],[3,2,2,2],[3,2,2,2]],self.s.split([3,3,3,2,2,2,2,2,2,2,2,2],3)) #famoso caso da morte
+        self.assertEqual([[7],[5,2]],self.s.split([7,5,2],2))
+        
