@@ -21,13 +21,18 @@ class Splitter(object):
                 self.loot.append(bucket.pop())
                 
         if(len_before == len(self.loot)):
-            print len_before 
-            self.rollback_last_share()   
+            self.rollback_share_decision()   
                     
-    def rollback_last_share(self):
+    def rollback_share_decision(self):
+        self.rollback_depth +=1
         for bucket in self.buckets:
-            self.loot = [bucket.pop()] + self.loot
+            self.loot = self.reclaim_gems_from_pirate(bucket) + self.loot
     
+    def reclaim_gems_from_pirate(self,bucket):
+        reclaimed_gems = []
+        for i in range(0,self.rollback_depth):
+            reclaimed_gems.append(bucket.pop())
+        return reclaimed_gems
     
     def sort_buckets(self):
         for bucket in self.buckets:
@@ -36,6 +41,7 @@ class Splitter(object):
         return self.buckets
     
     def init(self,loot,numberOfPirates):
+        self.rollback_depth = 0;
         self.loot = loot
         self.loot.sort()
         self.numberOfPirates = numberOfPirates
