@@ -2,6 +2,8 @@ class Splitter(object):
     def split(self, loot, numberOfPirates):
         
         self.loot = loot
+        self.loot.sort()
+        
         self.numberOfPirates = numberOfPirates
         
         if self.is_unsolvable(): 
@@ -10,8 +12,8 @@ class Splitter(object):
         buckets = self.create_buckets()
         
         while len(loot) > 0:
-          for bucket in buckets:
-              bucket.append(loot.pop())
+            for bucket in buckets:
+                bucket.append(loot.pop())
           
         return buckets
     
